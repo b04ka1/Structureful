@@ -1,0 +1,12 @@
+{
+  "item.structureful.meteoric_iron_ingot": "Meteoric Iron Ingot",
+  "item.structureful.raw_meteoric_iron": "Raw Meteoric Iron",
+  "item.structureful.heavy_sword": "Heavy Sword",
+
+  "block.structureful.meteoric_iron_block": "Meteoric Iron Block",
+  "block.structureful.meteoric_iron_ore": "Meteoric Iron Ore",
+  "block.structureful.advanced_furnace": "Advanced Furnace",
+  "block.structureful.volcanic_netherrack": "Volcanic Netherrack",
+
+  "creativetab.structureful_tab": "Structureful"
+}

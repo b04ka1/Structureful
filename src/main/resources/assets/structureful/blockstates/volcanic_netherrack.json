@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=true": {
+      "model": "structureful:block/volcanic_netherrack_active"
+    },
+    "active=false": {
+      "model": "structureful:block/volcanic_netherrack"
+    }
+  }
+}

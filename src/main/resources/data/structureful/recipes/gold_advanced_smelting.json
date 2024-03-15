@@ -1,0 +1,12 @@
+{
+  "type": "structureful:advanced_smelting",
+  "ingredients": [
+    {
+      "item": "minecraft:raw_gold"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "item": "minecraft:gold_ingot"
+  }
+}

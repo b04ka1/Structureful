@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_scrap",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "structureful:volcanic_netherrack",
+              "properties": {
+                "active": "true"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "random_sequence": "structureful:blocks/volcanic_netherrack"
+}

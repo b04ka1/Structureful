@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "structureful:block/volcanic_netherrack",
+    "side":  "structureful:block/volcanic_netherrack",
+    "top":   "structureful:block/volcanic_netherrack_top_active"
+  }
+}

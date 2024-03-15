@@ -1,0 +1,12 @@
+{
+  "type": "structureful:advanced_smelting",
+  "ingredients": [
+    {
+      "item": "structureful:raw_meteoric_iron"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "item": "structureful:meteoric_iron_ingot"
+  }
+}

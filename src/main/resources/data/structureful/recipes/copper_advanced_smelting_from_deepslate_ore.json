@@ -1,0 +1,12 @@
+{
+  "type": "structureful:advanced_smelting",
+  "ingredients": [
+    {
+      "item": "minecraft:deepslate_copper_ore"
+    }
+  ],
+  "output": {
+    "count": 2,
+    "item": "minecraft:copper_ingot"
+  }
+}
