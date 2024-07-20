@@ -5,8 +5,10 @@ import com.b04ka.structureful.recipe.AdvancedFurnaceRecipe;
 import com.b04ka.structureful.screen.AdvancedFurnaceMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -20,11 +22,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,7 +35,6 @@ public class AdvancedFurnaceBlockEntity extends BlockEntity implements MenuProvi
     private static final int FUEL_SLOT = 1;
     private static final int OUTPUT_SLOT = 2;
 
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
     private int progress = 0;
@@ -50,6 +47,7 @@ public class AdvancedFurnaceBlockEntity extends BlockEntity implements MenuProvi
 
     public AdvancedFurnaceBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.ADVANCED_FURNACE_BE.get(), pPos, pBlockState);
+
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -81,7 +79,7 @@ public class AdvancedFurnaceBlockEntity extends BlockEntity implements MenuProvi
     }
 
     @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+    private @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if(cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
         }
@@ -121,13 +119,13 @@ public class AdvancedFurnaceBlockEntity extends BlockEntity implements MenuProvi
     }
 
     @Override
-    protected void saveAdditional(CompoundTag pTag) {
-        pTag.put("inventory", itemHandler.serializeNBT());
+    protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
+        super.saveAdditional(pTag, pRegistries);
+        ContainerHelper.saveAllItems(pTag, this.items, pRegistries);
         pTag.putInt("advanced_furnace.progress", progress);
         pTag.putInt("advanced_furnace.burningTime", burnTime);
         pTag.putInt("advanced_furnace.itemBurnTime", itemBurnTime);
 
-        super.saveAdditional(pTag);
     }
 
     @Override
@@ -137,6 +135,10 @@ public class AdvancedFurnaceBlockEntity extends BlockEntity implements MenuProvi
         progress = pTag.getInt("advanced_furnace.progress");
         burnTime = pTag.getInt("advanced_furnace.burningTime");
         itemBurnTime = pTag.getInt("advanced_furnace.itemBurnTime");
+    }
+
+    public ContainerData getDataAccess(){
+        return data;
     }
 
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
@@ -213,9 +215,6 @@ public class AdvancedFurnaceBlockEntity extends BlockEntity implements MenuProvi
         }
     }
 
-    private void resetBurnTime() {
-       burnTime = 0;
-    }
 
     private void decreaseBurningTime() {
         burnTime--;

@@ -1,28 +1,15 @@
 package com.b04ka.structureful.screen;
 
 import com.b04ka.structureful.Structureful;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.network.IContainerFactory;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 public class ModMenuTypes {
-    public static final DeferredRegister<MenuType<?>> MENUS =
-            DeferredRegister.create(ForgeRegistries.MENU_TYPES, Structureful.MODID);
+    public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, Structureful.MODID);
 
-    public static final RegistryObject<MenuType<AdvancedFurnaceMenu>> ADVANCED_FURNACE_MENU =
-            registerMenuType("advanced_furnace_menu", AdvancedFurnaceMenu::new);
-
-
-    private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
-        return MENUS.register(name, () -> IForgeMenuType.create(factory));
-    }
-
-    public static void register(IEventBus eventBus) {
-        MENUS.register(eventBus);
-    }
+    public static final Supplier<MenuType<AdvancedFurnaceMenu>> ADVANCED_FURNACE_MENU = MENUS.register("advanced_furnace_menu", ()-> IMenuTypeExtension.create(AdvancedFurnaceMenu::new));
 }

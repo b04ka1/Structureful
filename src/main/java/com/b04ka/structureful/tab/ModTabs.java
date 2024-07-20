@@ -7,16 +7,17 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 public class ModTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Structureful.MODID);
 
-    public static final RegistryObject<CreativeModeTab> MODERNIZATION_TAB= CREATIVE_MODE_TABS.register("structureful_tab",
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> STRUCTUREFUL_TAB= CREATIVE_MODE_TABS.register("structureful_tab",
             ()-> CreativeModeTab.builder().icon(()-> new  ItemStack(ModItems.METEORIC_IRON_INGOT.get()))
                     .title(Component.translatable("creativetab.structureful_tab"))
                     .displayItems(((p_270258_, p_259752_) -> {
@@ -25,8 +26,8 @@ public class ModTabs {
                         p_259752_.accept(ModItems.HEAVY_SWORD.get());
                         p_259752_.accept(ModBlocks.METEORIC_IRON_ORE.get());
                         p_259752_.accept(ModBlocks.METEORIC_IRON_BLOCK.get());
-                        p_259752_.accept(ModBlocks.ADVANCED_FURNACE.get());
-                        p_259752_.accept(ModBlocks.VOLCANO.get());
+//                        p_259752_.accept(ModBlocks.ADVANCED_FURNACE.get());
+//                        p_259752_.accept(ModBlocks.VOLCANO.get());
 
 
                     }))

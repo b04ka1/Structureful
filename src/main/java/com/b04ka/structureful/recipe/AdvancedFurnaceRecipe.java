@@ -3,9 +3,13 @@ package com.b04ka.structureful.recipe;
 import com.b04ka.structureful.Structureful;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.MapCodec;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
@@ -34,13 +38,15 @@ public class AdvancedFurnaceRecipe  implements Recipe<SimpleContainer> {
 
         return inputItems.get(0).test(p_44002_.getItem(0));
     }
+
+    @Override
+    public ItemStack assemble(SimpleContainer p_345149_, HolderLookup.Provider p_346030_) {
+        return output.copy();
+    }
+
     @Override
     public NonNullList<Ingredient> getIngredients() {
         return inputItems;
-    }
-    @Override
-    public ItemStack assemble(SimpleContainer p_44001_, RegistryAccess p_267165_) {
-        return output.copy();
     }
 
     @Override
@@ -49,9 +55,10 @@ public class AdvancedFurnaceRecipe  implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess p_267052_) {
+    public ItemStack getResultItem(HolderLookup.Provider pRegistries) {
         return output.copy();
     }
+
 
     @Override
     public ResourceLocation getId() {
@@ -74,7 +81,7 @@ public class AdvancedFurnaceRecipe  implements Recipe<SimpleContainer> {
 
     public static class Serializer implements RecipeSerializer<AdvancedFurnaceRecipe> {
     public static final Serializer INSTANCE = new Serializer();
-    public static final ResourceLocation ID = new ResourceLocation(Structureful.MODID, "advanced_smelting");
+    public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(Structureful.MODID, "advanced_smelting");
         @Override
         public AdvancedFurnaceRecipe fromJson(ResourceLocation p_44103_, JsonObject p_44104_) {
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(p_44104_, "output"));
@@ -85,7 +92,7 @@ public class AdvancedFurnaceRecipe  implements Recipe<SimpleContainer> {
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
-            }            
+            }
 
             return new AdvancedFurnaceRecipe(inputs, output, p_44103_);
         }
@@ -111,6 +118,16 @@ public class AdvancedFurnaceRecipe  implements Recipe<SimpleContainer> {
                 ingredient.toNetwork(p_44101_);
             }
             p_44101_.writeItemStack(p_44102_.getResultItem(null), false);
+        }
+
+        @Override
+        public MapCodec<AdvancedFurnaceRecipe> codec() {
+            return null;
+        }
+
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, AdvancedFurnaceRecipe> streamCodec() {
+            return null;
         }
     }
 }

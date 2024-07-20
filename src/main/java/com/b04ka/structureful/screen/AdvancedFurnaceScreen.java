@@ -11,8 +11,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
 public class AdvancedFurnaceScreen extends AbstractContainerScreen<AdvancedFurnaceMenu> {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(Structureful.MODID, "textures/gui/advanced_furnace.png");
+    private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Structureful.MODID, "textures/gui/advanced_furnace.png");
+
 
     public AdvancedFurnaceScreen(AdvancedFurnaceMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -53,10 +53,10 @@ public class AdvancedFurnaceScreen extends AbstractContainerScreen<AdvancedFurna
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, delta);
-        renderTooltip(guiGraphics, mouseX, mouseY);
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float delta) {
+        this.renderBackground(graphics, mouseX, mouseY, delta);
+        super.render(graphics, mouseX, mouseY, delta);
+        renderTooltip(graphics, mouseX, mouseY);
 
     }
 }

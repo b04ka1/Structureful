@@ -3,6 +3,7 @@ package com.b04ka.structureful.block.custom;
 
 import com.b04ka.structureful.block.entity.AdvancedFurnaceBlockEntity;
 import com.b04ka.structureful.block.entity.ModBlockEntities;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,7 +28,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class AdvancedFurnaceBlock extends BaseEntityBlock {
@@ -36,10 +36,16 @@ public class AdvancedFurnaceBlock extends BaseEntityBlock {
 
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
+    public static final MapCodec<AdvancedFurnaceBlock> CODEC = simpleCodec(AdvancedFurnaceBlock::new);
 
     public AdvancedFurnaceBlock(Properties pProperties) {
         super(pProperties);
         registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
     }
 
     //BlockState

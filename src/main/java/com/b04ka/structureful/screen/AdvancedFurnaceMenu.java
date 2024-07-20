@@ -9,34 +9,49 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.items.SlotItemHandler;
+import net.neoforged.neoforge.items.SlotItemHandler;
+
+import java.util.Objects;
+
 
 public class AdvancedFurnaceMenu extends AbstractContainerMenu {
-    public final AdvancedFurnaceBlockEntity blockEntity;
-    private final Level level;
+    private final AdvancedFurnaceBlockEntity blockEntity;
     private final ContainerData data;
+    protected final Level level;
 
-    public AdvancedFurnaceMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4));
+
+    public AdvancedFurnaceMenu(final int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+        this(pContainerId, inv, getBlockEntity(inv, extraData));
     }
 
-    public AdvancedFurnaceMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+    private static AdvancedFurnaceBlockEntity getBlockEntity(final Inventory playerInventory, final FriendlyByteBuf data) {
+        Objects.requireNonNull(playerInventory, "playerInventory cannot be null!");
+        Objects.requireNonNull(data, "data cannot be null!");
+        final BlockEntity tileAtPos = playerInventory.player.level().getBlockEntity(data.readBlockPos());
+
+        if (tileAtPos instanceof AdvancedFurnaceBlockEntity advancedFurnaceBlockEntity) {
+            return advancedFurnaceBlockEntity;
+        }
+
+        throw new IllegalStateException("Block entity is not correct! " + tileAtPos);
+    }
+
+    public AdvancedFurnaceMenu(int pContainerId, Inventory inv, AdvancedFurnaceBlockEntity advancedFurnaceBlockEntity) {
         super(ModMenuTypes.ADVANCED_FURNACE_MENU.get(), pContainerId);
-        checkContainerSize(inv, 3);
-        blockEntity = ((AdvancedFurnaceBlockEntity) entity);
+        this.blockEntity = advancedFurnaceBlockEntity;
+        this.data = advancedFurnaceBlockEntity.getDataAccess();
         this.level = inv.player.level();
-        this.data = data;
+        checkContainerSize(inv, 3);
+
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 56, 17));
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, 56, 53));
-            this.addSlot(new SlotItemHandler(iItemHandler, 2, 116, 35));
+        this.addSlot(new SlotItemHandler(iItemHandler, 0, 56, 17));
+        this.addSlot(new SlotItemHandler(iItemHandler, 1, 56, 53));
+        this.addSlot(new SlotItemHandler(iItemHandler, 2, 116, 35));
 
-        });
+
 
         addDataSlots(data);
     }
