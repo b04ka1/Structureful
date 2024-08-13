@@ -1,0 +1,14 @@
+{
+  "type": "structureful:advanced_smelting",
+  "category": "misc",
+  "cookingtime": 300,
+  "experience": 0.7,
+  "group": "advanced",
+  "ingredient": {
+    "tag": "minecraft:gold_ores"
+  },
+  "result": {
+    "count": 4,
+    "id": "minecraft:gold_ingot"
+  }
+}

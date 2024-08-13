@@ -1,7 +1,10 @@
 {
   "item.structureful.meteoric_iron_ingot": "Meteoric Iron Ingot",
   "item.structureful.raw_meteoric_iron": "Raw Meteoric Iron",
+  "item.structureful.volcanic_shard": "Volcanic Shard",
+  "item.structureful.volcanic_core": "Volcanic Core",
   "item.structureful.heavy_sword": "Heavy Sword",
+  "item.structureful.blaze_staff": "Blaze Staff",
 
   "block.structureful.meteoric_iron_block": "Meteoric Iron Block",
   "block.structureful.meteoric_iron_ore": "Meteoric Iron Ore",

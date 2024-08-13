@@ -7,68 +7,42 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.SmokerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class AdvancedFurnaceBlock extends BaseEntityBlock {
-
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-
-    public static final BooleanProperty LIT = BlockStateProperties.LIT;
+public class AdvancedFurnaceBlock extends AbstractFurnaceBlock {
 
     public static final MapCodec<AdvancedFurnaceBlock> CODEC = simpleCodec(AdvancedFurnaceBlock::new);
 
-    public AdvancedFurnaceBlock(Properties pProperties) {
-        super(pProperties);
-        registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false)));
-    }
-
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
+    protected MapCodec<? extends AbstractFurnaceBlock> codec() {
         return CODEC;
     }
 
-    //BlockState
-
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
+    public AdvancedFurnaceBlock(Properties pProperties) {
+        super(pProperties);
     }
 
 
+    @javax.annotation.Nullable
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(FACING, LIT);
-
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return createFurnaceTicker(pLevel, pBlockEntityType, ModBlockEntities.ADVANCED_FURNACE_BE.get());
     }
 
-
-
-    //
-
-
+    @Override
     public void animateTick(BlockState blockState, Level level, BlockPos blockPos, RandomSource randomSource) {
         if (blockState.getValue(LIT)) {
             Direction direction = blockState.getValue(FACING);
@@ -76,7 +50,6 @@ public class AdvancedFurnaceBlock extends BaseEntityBlock {
             double d0 = (double)blockPos.getX() + 0.5D;
             double d1 = (double)blockPos.getY();
             double d2 = (double)blockPos.getZ() + 0.5D;
-            double d3 = 0.52D;
             double d4 = randomSource.nextDouble() * 0.6D - 0.3D;
             double d5 = direction$axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52D : d4;
             double d6 = randomSource.nextDouble() * 9.0D / 16.0D;
@@ -86,41 +59,17 @@ public class AdvancedFurnaceBlock extends BaseEntityBlock {
             if (randomSource.nextInt(10) == 0) {
                 level.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
             }
-
-
-
         }
     }
 
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
-    }
+
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof AdvancedFurnaceBlockEntity) {
-                ((AdvancedFurnaceBlockEntity) blockEntity).drops();
-            }
+    protected void openContainer(Level pLevel, BlockPos pPos, Player pPlayer) {
+        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+        if (blockentity instanceof AdvancedFurnaceBlockEntity) {
+            pPlayer.openMenu((MenuProvider)blockentity);
         }
-
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
-
-    @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (!pLevel.isClientSide()) {
-            BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof AdvancedFurnaceBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (AdvancedFurnaceBlockEntity)entity, pPos);
-            } else {
-                throw new IllegalStateException("Our Container provider is missing!");
-            }
-        }
-
-        return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
     @Nullable
@@ -128,20 +77,4 @@ public class AdvancedFurnaceBlock extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new AdvancedFurnaceBlockEntity(pPos, pState);
     }
-
-
-
-    @Nullable
-    @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        if(pLevel.isClientSide()) {
-            return null;
-        }
-
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.ADVANCED_FURNACE_BE.get(),
-                (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
-    }
-
-
-
 }

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 10.0,
+  "group": "meteoric_iron",
+  "ingredient": {
+    "item": "structureful:meteoric_iron_ore"
+  },
+  "result": {
+    "count": 1,
+    "id": "structureful:meteoric_iron_ingot"
+  }
+}

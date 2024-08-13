@@ -18,9 +18,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         this.dropSelf(ModBlocks.METEORIC_IRON_BLOCK.get());
-//        this.dropSelf(ModBlocks.ADVANCED_FURNACE.get());
-
-
+        this.dropSelf(ModBlocks.ADVANCED_FURNACE.get());
         this.add(ModBlocks.METEORIC_IRON_ORE.get(),
                 block -> createOreDrop(ModBlocks.METEORIC_IRON_ORE.get(), ModItems.RAW_METEORIC_IRON.get()));
 
@@ -29,6 +27,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value).toList();
+        return ModBlocks.BLOCKS.getEntries().stream()
+                .filter( b-> b != ModBlocks.VOLCANO)
+                .map(Holder::value)::iterator;
     }
 }

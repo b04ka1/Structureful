@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "structureful:meteoric_iron_ingot"
+    },
+    "0": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " ##",
+    "###",
+    "0# "
+  ],
+  "result": {
+    "count": 1,
+    "id": "structureful:heavy_sword"
+  }
+}

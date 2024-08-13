@@ -20,20 +20,19 @@ public class ModTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> STRUCTUREFUL_TAB= CREATIVE_MODE_TABS.register("structureful_tab",
             ()-> CreativeModeTab.builder().icon(()-> new  ItemStack(ModItems.METEORIC_IRON_INGOT.get()))
                     .title(Component.translatable("creativetab.structureful_tab"))
-                    .displayItems(((p_270258_, p_259752_) -> {
-                        p_259752_.accept(ModItems.RAW_METEORIC_IRON.get());
-                        p_259752_.accept(ModItems.METEORIC_IRON_INGOT.get());
-                        p_259752_.accept(ModItems.HEAVY_SWORD.get());
-                        p_259752_.accept(ModBlocks.METEORIC_IRON_ORE.get());
-                        p_259752_.accept(ModBlocks.METEORIC_IRON_BLOCK.get());
-//                        p_259752_.accept(ModBlocks.ADVANCED_FURNACE.get());
-//                        p_259752_.accept(ModBlocks.VOLCANO.get());
+                    .displayItems(((displayParameters, output) -> {
+                        output.accept(ModItems.RAW_METEORIC_IRON.get());
+                        output.accept(ModItems.METEORIC_IRON_INGOT.get());
+                        output.accept(ModItems.HEAVY_SWORD.get());
+                        output.accept(ModBlocks.METEORIC_IRON_ORE.get());
+                        output.accept(ModBlocks.METEORIC_IRON_BLOCK.get());
+                        output.accept(ModBlocks.ADVANCED_FURNACE.get());
+                        output.accept(ModItems.VOLCANIC_SHARD.get());
+                        output.accept(ModItems.VOLCANIC_CORE.get());
+                        output.accept(ModItems.BLAZE_STAFF.get());
+                        output.accept(ModBlocks.VOLCANO.get());
 
 
                     }))
                     .build());
-
-    public static void register(IEventBus eventBus){
-        CREATIVE_MODE_TABS.register(eventBus);
-    }
 }

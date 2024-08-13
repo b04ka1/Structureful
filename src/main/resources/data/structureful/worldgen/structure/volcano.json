@@ -1,0 +1,19 @@
+{
+  "type": "structureful:volcano",
+  "biomes": "#structureful:has_structure/volcano",
+  "start_height": {
+    "absolute": -15
+  },
+  "height": {
+    "type": "minecraft:uniform",
+    "max_inclusive": {
+      "below_top": 2
+    },
+    "min_inclusive": {
+      "absolute": 32
+    }
+  },
+  "spawn_overrides": {},
+  "step": "underground_decoration",
+  "terrain_adaptation": "beard_thin"
+}
