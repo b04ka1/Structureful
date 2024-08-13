@@ -1,0 +1,14 @@
+{
+  "type": "structureful:advanced_smelting",
+  "category": "misc",
+  "cookingtime": 300,
+  "experience": 10.0,
+  "group": "advanced",
+  "ingredient": {
+    "item": "structureful:raw_meteoric_iron"
+  },
+  "result": {
+    "count": 2,
+    "id": "structureful:meteoric_iron_ingot"
+  }
+}

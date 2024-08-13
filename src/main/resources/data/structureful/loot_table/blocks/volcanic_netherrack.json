@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [{
+        "type": "minecraft:alternatives",
+        "children": [
+          {
+            "type": "minecraft:item",
+            "name": "structureful:volcanic_netherrack",
+            "conditions": [{
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "predicates": {
+                  "minecraft:enchantments": [{
+                    "enchantments": "minecraft:silk_touch",
+                    "levels": {
+                      "min": 1}}]}}}]
+          },
+          {
+            "type": "minecraft:item",
+            "name": "structureful:volcanic_shard",
+            "conditions": [{
+              "condition": "minecraft:block_state_property",
+              "block": "structureful:volcanic_netherrack",
+              "properties": {
+                "active": "true"}}]
+          }
+        ]}]
+    }
+  ],
+  "random_sequence": "minecraft:blocks/volcanic_netherrack"
+}

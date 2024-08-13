@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "structureful:volcanic_core"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_volcanic_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": "structureful:volcanic_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_volcanic_shard"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "structureful:volcanic_core"
+    ]
+  }
+}
