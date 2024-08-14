@@ -1,7 +1,5 @@
 package com.b04ka.structureful.block.entity;
 
-import com.b04ka.structureful.Structureful;
-import com.b04ka.structureful.compat.StructurefulPlugin;
 import com.b04ka.structureful.recipe.AdvancedFurnaceRecipe;
 import com.b04ka.structureful.recipe.ModRecipes;
 import com.b04ka.structureful.screen.AdvancedFurnaceMenu;
@@ -10,10 +8,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class AdvancedFurnaceBlockEntity extends AbstractFurnaceBlockEntity {

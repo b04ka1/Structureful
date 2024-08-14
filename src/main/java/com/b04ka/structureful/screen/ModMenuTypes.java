@@ -1,7 +1,6 @@
 package com.b04ka.structureful.screen;
 
 import com.b04ka.structureful.Structureful;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;

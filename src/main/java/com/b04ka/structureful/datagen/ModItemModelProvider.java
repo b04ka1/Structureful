@@ -15,7 +15,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         basicItem(ModItems.METEORIC_IRON_INGOT.get());
         basicItem(ModItems.RAW_METEORIC_IRON.get());
-//        basicItem(ModItems.VOLCANIC_SHARD.get());
-//        basicItem(ModItems.VOLCANIC_CORE.get());
+        basicItem(ModItems.VOLCANIC_SHARD.get());
+        basicItem(ModItems.VOLCANIC_CORE.get());
     }
 }

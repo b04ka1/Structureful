@@ -2,7 +2,10 @@ package com.b04ka.structureful.item;
 
 import com.b04ka.structureful.Structureful;
 import com.b04ka.structureful.item.custom.BlazeStaffItem;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tiers;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

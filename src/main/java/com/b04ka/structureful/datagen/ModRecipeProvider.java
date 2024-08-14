@@ -3,15 +3,10 @@ package com.b04ka.structureful.datagen;
 
 import com.b04ka.structureful.block.ModBlocks;
 import com.b04ka.structureful.item.ModItems;
-import com.b04ka.structureful.recipe.AdvancedFurnaceRecipe;
-import com.b04ka.structureful.recipe.ModRecipes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.BlastingRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
