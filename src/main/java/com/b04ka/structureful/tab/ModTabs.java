@@ -16,7 +16,7 @@ public class ModTabs {
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> STRUCTUREFUL_TAB= CREATIVE_MODE_TABS.register("structureful_tab",
             ()-> CreativeModeTab.builder().icon(()-> new  ItemStack(ModItems.METEORIC_IRON_INGOT.get()))
-                    .title(Component.translatable("creativetab.structureful_tab"))
+                    .title(Component.translatable("creative_tab.structureful.structureful"))
                     .displayItems(((displayParameters, output) -> {
                         output.accept(ModItems.RAW_METEORIC_IRON.get());
                         output.accept(ModItems.METEORIC_IRON_INGOT.get());

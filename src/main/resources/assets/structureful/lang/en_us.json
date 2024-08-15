@@ -11,5 +11,12 @@
   "block.structureful.advanced_furnace": "Advanced Furnace",
   "block.structureful.volcanic_netherrack": "Volcanic Netherrack",
 
-  "creativetab.structureful_tab": "Structureful"
+  "tooltips.structureful.more_information": "Hold §9<\uD83D\uDDB1SHIFT>§r for info.",
+  "tooltips.structureful.more_information_pressed": "Hold §8<\uD83D\uDDB1SHIFT>§r for info.",
+  "tooltips.structureful.meteoric_iron_ore": "§4❗§r Can be found in a meteorites.",
+  "tooltips.structureful.volcanic_shard": "§4❗§r Drops from volcanic netherrack when its active.",
+  "tooltips.structureful.volcanic_netherrack": "§4❗§r Сan be found on top of volcanoes.",
+  "tooltips.structureful.blaze_staff": "§4❗§r Shoots three small fireballs.",
+
+  "creative_tab.structureful.structureful": "Structureful"
 }

@@ -31,18 +31,10 @@ public class AdvancedFurnaceCategory implements IRecipeCategory<AbstractCookingR
     private final IDrawable background;
     private final IDrawable icon;
 
-    @Override
-    public int getHeight() {
-        return 54;
-    }
 
-    @Override
-    public int getWidth() {
-        return 82;
-    }
 
     public AdvancedFurnaceCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE_VANILLA, 0, 114, 82, 54);
+        this.background = new AdvancedFurnaceDrawable();
         this.icon = helper.createDrawableItemStack(new ItemStack(ModBlocks.ADVANCED_FURNACE.get()));
     }
 

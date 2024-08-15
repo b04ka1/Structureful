@@ -3,15 +3,19 @@ package com.b04ka.structureful.block.custom;
 import com.b04ka.structureful.block.entity.ModBlockEntities;
 import com.b04ka.structureful.block.entity.VolcanoBlockEntity;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -25,6 +29,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class VolcanoBlock extends BaseEntityBlock {
     public static final MapCodec<VolcanoBlock> CODEC = simpleCodec(VolcanoBlock::new);
@@ -98,7 +104,17 @@ public class VolcanoBlock extends BaseEntityBlock {
         return createTickerHelper(pBlockEntityType, ModBlockEntities.VOLCANO_BE.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
+    @Override
+    public void appendHoverText(ItemStack pStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+        if(Screen.hasShiftDown()) {
+            pTooltipComponents.add(Component.translatable("tooltips.structureful.more_information_pressed"));
+            pTooltipComponents.add(Component.translatable("tooltips.structureful.volcanic_netherrack"));
+        } else {
+            pTooltipComponents.add(Component.translatable("tooltips.structureful.more_information"));
+        }
 
+        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+    }
 
 }
 
