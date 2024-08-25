@@ -10,6 +10,7 @@
   "block.structureful.meteoric_iron_ore": "Meteoric Iron Ore",
   "block.structureful.advanced_furnace": "Advanced Furnace",
   "block.structureful.volcanic_netherrack": "Volcanic Netherrack",
+  "block.structureful.volcanic_lantern": "Volcanic Lantern",
 
   "tooltips.structureful.more_information": "Hold §9<\uD83D\uDDB1SHIFT>§r for info.",
   "tooltips.structureful.more_information_pressed": "Hold §8<\uD83D\uDDB1SHIFT>§r for info.",
@@ -17,6 +18,8 @@
   "tooltips.structureful.volcanic_shard": "§4❗§r Drops from volcanic netherrack when its active.",
   "tooltips.structureful.volcanic_netherrack": "§4❗§r Сan be found on top of volcanoes.",
   "tooltips.structureful.blaze_staff": "§4❗§r Shoots three small fireballs.",
+
+  "effect.structureful.fury": "Fury",
 
   "creative_tab.structureful.structureful": "Structureful"
 }

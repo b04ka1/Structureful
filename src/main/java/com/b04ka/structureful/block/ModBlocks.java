@@ -2,6 +2,7 @@ package com.b04ka.structureful.block;
 
 import com.b04ka.structureful.Structureful;
 import com.b04ka.structureful.block.custom.AdvancedFurnaceBlock;
+import com.b04ka.structureful.block.custom.VolcanicLanternBlock;
 import com.b04ka.structureful.block.custom.VolcanoBlock;
 import com.b04ka.structureful.item.ModItems;
 import net.minecraft.client.gui.screens.Screen;
@@ -51,6 +52,9 @@ public class ModBlocks {
             ()-> new VolcanoBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(4F).mapColor(MapColor.NETHER).sound(SoundType.NETHERRACK).noOcclusion().randomTicks()
                     .lightLevel(BlockState->BlockState.getValue(VolcanoBlock.ACTIVE) ? 15:0)
             ));
+
+    public static final DeferredBlock<Block> VOLCANIC_LANTERN = registerBlock("volcanic_lantern",
+            ()-> new VolcanicLanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN).mapColor(MapColor.NETHER).noOcclusion()));
 
 
 

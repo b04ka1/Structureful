@@ -19,6 +19,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     protected void generate() {
         this.dropSelf(ModBlocks.METEORIC_IRON_BLOCK.get());
         this.dropSelf(ModBlocks.ADVANCED_FURNACE.get());
+        this.dropSelf(ModBlocks.VOLCANIC_LANTERN.get());
         this.add(ModBlocks.METEORIC_IRON_ORE.get(),
                 block -> createOreDrop(ModBlocks.METEORIC_IRON_ORE.get(), ModItems.RAW_METEORIC_IRON.get()));
 

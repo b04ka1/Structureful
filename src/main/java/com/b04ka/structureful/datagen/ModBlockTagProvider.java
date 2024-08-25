@@ -21,14 +21,16 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.METEORIC_IRON_BLOCK.get())
                 .add(ModBlocks.METEORIC_IRON_ORE.get())
-//                .add(ModBlocks.ADVANCED_FURNACE.get())
-                .add(ModBlocks.VOLCANO.get());
+                .add(ModBlocks.ADVANCED_FURNACE.get())
+                .add(ModBlocks.VOLCANO.get())
+                .add(ModBlocks.VOLCANIC_LANTERN.get());
 
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.METEORIC_IRON_BLOCK.get())
-//                .add(ModBlocks.ADVANCED_FURNACE.get())
-                .add(ModBlocks.VOLCANO.get());
+                .add(ModBlocks.ADVANCED_FURNACE.get())
+                .add(ModBlocks.VOLCANO.get())
+                .add(ModBlocks.VOLCANIC_LANTERN.get());
 
 
         this.tag(BlockTags.NEEDS_STONE_TOOL)

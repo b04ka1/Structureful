@@ -2,6 +2,7 @@ package com.b04ka.structureful;
 
 import com.b04ka.structureful.block.ModBlocks;
 import com.b04ka.structureful.block.entity.ModBlockEntities;
+import com.b04ka.structureful.effect.ModEffects;
 import com.b04ka.structureful.item.ModItems;
 import com.b04ka.structureful.recipe.ModRecipes;
 import com.b04ka.structureful.screen.ModMenuTypes;
@@ -35,6 +36,7 @@ public class Structureful {
         ModRecipes.RECIPE_TYPES.register(modEventBus);
         ModRecipes.RECIPE_SERIALIZER.register(modEventBus);
         ModMenuTypes.MENUS.register(modEventBus);
+        ModEffects.EFFECTS.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

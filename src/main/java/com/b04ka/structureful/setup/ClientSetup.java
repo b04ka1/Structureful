@@ -14,10 +14,9 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 public class ClientSetup {
 
     public ClientSetup(IEventBus bus, ModContainer modContainer) {
-
         bus.addListener(this::menuScreens);
     }
     private void menuScreens(final RegisterMenuScreensEvent event){
-            event.register(ModMenuTypes.ADVANCED_FURNACE_MENU.get(), AdvancedFurnaceScreen::new);
+        event.register(ModMenuTypes.ADVANCED_FURNACE_MENU.get(), AdvancedFurnaceScreen::new);
     }
 }

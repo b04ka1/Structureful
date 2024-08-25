@@ -21,4 +21,8 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("advanced_furnace_be", ()-> BlockEntityType.Builder.of(
                     AdvancedFurnaceBlockEntity::new, ModBlocks.ADVANCED_FURNACE.get()).build(null));
 
+    public static final Supplier<BlockEntityType<VolcanicLanternBlockEntity>> VOLCANIC_LANTERN_BE =
+            BLOCK_ENTITIES.register("volcanic_lantern_be", ()-> BlockEntityType.Builder.of(
+                    VolcanicLanternBlockEntity::new, ModBlocks.VOLCANIC_LANTERN.get()).build(null));
+
 }

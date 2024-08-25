@@ -1,6 +1,8 @@
 {
   "values": [
     "structureful:meteoric_iron_block",
-    "structureful:volcanic_netherrack"
+    "structureful:advanced_furnace",
+    "structureful:volcanic_netherrack",
+    "structureful:volcanic_lantern"
   ]
 }
