@@ -76,6 +76,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_volcanic_core", has(ModItems.VOLCANIC_CORE.get()))
                 .save(pRecipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.VOLCANIC_LANTERN.get())
+                .pattern("01#")
+                .define('1', ModItems.VOLCANIC_SHARD)
+                .define('0', Items.NETHERITE_SCRAP)
+                .define('#', Items.GOLD_INGOT)
+                .unlockedBy("has_volcanic_shard", has(ModItems.VOLCANIC_SHARD.get()))
+                .save(pRecipeOutput);
+
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.METEORIC_IRON_INGOT.get(), 9)
                 .requires(ModBlocks.METEORIC_IRON_BLOCK.get())

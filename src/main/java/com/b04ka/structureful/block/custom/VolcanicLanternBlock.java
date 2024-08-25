@@ -3,8 +3,13 @@ package com.b04ka.structureful.block.custom;
 import com.b04ka.structureful.block.entity.ModBlockEntities;
 import com.b04ka.structureful.block.entity.VolcanicLanternBlockEntity;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -23,6 +28,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class VolcanicLanternBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final MapCodec<VolcanicLanternBlock> CODEC = simpleCodec(VolcanicLanternBlock::new);
@@ -54,6 +61,18 @@ public class VolcanicLanternBlock extends BaseEntityBlock implements SimpleWater
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new VolcanicLanternBlockEntity(pPos, pState);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+        if(Screen.hasShiftDown()) {
+            pTooltipComponents.add(Component.translatable("tooltips.structureful.more_information_pressed"));
+            pTooltipComponents.add(Component.translatable("tooltips.structureful.volcanic_lantern"));
+        } else {
+            pTooltipComponents.add(Component.translatable("tooltips.structureful.more_information"));
+        }
+
+        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
     }
 
     @Nullable

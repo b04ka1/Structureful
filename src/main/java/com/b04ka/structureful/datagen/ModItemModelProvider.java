@@ -18,6 +18,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RAW_METEORIC_IRON.get());
         basicItem(ModItems.VOLCANIC_SHARD.get());
         basicItem(ModItems.VOLCANIC_CORE.get());
-//        basicItem(ModBlocks.VOLCANIC_LANTERN.get().asItem());
+        basicItem(ModBlocks.VOLCANIC_LANTERN.get().asItem());
     }
 }
