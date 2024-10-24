@@ -29,6 +29,7 @@ public class ModTabs {
                         output.accept(ModItems.BLAZE_STAFF.get());
                         output.accept(ModBlocks.VOLCANO.get());
                         output.accept(ModBlocks.VOLCANIC_LANTERN.get());
+                        output.accept(ModItems.DRAGON_HEART.get());
                     }))
                     .build());
 }
