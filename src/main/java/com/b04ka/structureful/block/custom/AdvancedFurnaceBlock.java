@@ -60,8 +60,6 @@ public class AdvancedFurnaceBlock extends AbstractFurnaceBlock {
         }
     }
 
-
-
     @Override
     protected void openContainer(Level pLevel, BlockPos pPos, Player pPlayer) {
         BlockEntity blockentity = pLevel.getBlockEntity(pPos);

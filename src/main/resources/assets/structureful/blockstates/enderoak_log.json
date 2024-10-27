@@ -1,0 +1,82 @@
+{
+  "variants": {
+    "facing=down,has_sap=0": {
+      "model": "structureful:block/enderoak_log",
+      "x": 180
+    },
+    "facing=down,has_sap=1": {
+      "model": "structureful:block/enderoak_log_without_sap",
+      "x": 180
+    },
+    "facing=down,has_sap=2": {
+      "model": "structureful:block/enderoak_log_with_sap",
+      "x": 180
+    },
+    "facing=east,has_sap=0": {
+      "model": "structureful:block/enderoak_log",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,has_sap=1": {
+      "model": "structureful:block/enderoak_log_without_sap",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,has_sap=2": {
+      "model": "structureful:block/enderoak_log_with_sap",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,has_sap=0": {
+      "model": "structureful:block/enderoak_log",
+      "x": 90
+    },
+    "facing=north,has_sap=1": {
+      "model": "structureful:block/enderoak_log_without_sap",
+      "x": 90
+    },
+    "facing=north,has_sap=2": {
+      "model": "structureful:block/enderoak_log_with_sap",
+      "x": 90
+    },
+    "facing=south,has_sap=0": {
+      "model": "structureful:block/enderoak_log",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,has_sap=1": {
+      "model": "structureful:block/enderoak_log_without_sap",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,has_sap=2": {
+      "model": "structureful:block/enderoak_log_with_sap",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,has_sap=0": {
+      "model": "structureful:block/enderoak_log"
+    },
+    "facing=up,has_sap=1": {
+      "model": "structureful:block/enderoak_log_without_sap"
+    },
+    "facing=up,has_sap=2": {
+      "model": "structureful:block/enderoak_log_with_sap"
+    },
+    "facing=west,has_sap=0": {
+      "model": "structureful:block/enderoak_log",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,has_sap=1": {
+      "model": "structureful:block/enderoak_log_without_sap",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,has_sap=2": {
+      "model": "structureful:block/enderoak_log_with_sap",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

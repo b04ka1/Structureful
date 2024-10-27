@@ -61,8 +61,8 @@ public class ModItems {
         }
     }, new Item.Properties().fireResistant().rarity(Rarity.UNCOMMON));
     public static final DeferredItem<Item> BLAZE_STAFF = ITEMS.register("blaze_staff", () -> new BlazeStaffItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.UNCOMMON)));
-
     public static final DeferredItem<Item> DRAGON_HEART = ITEMS.register("dragon_heart", () -> new DragonHeartItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final DeferredItem<Item> ENDERSAP_BOTTLE = ITEMS.registerSimpleItem("endersap_bottle", new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON));
 
 }
 

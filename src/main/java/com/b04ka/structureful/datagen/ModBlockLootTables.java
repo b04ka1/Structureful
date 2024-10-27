@@ -7,6 +7,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.Set;
 
@@ -21,9 +22,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.ADVANCED_FURNACE.get());
         this.dropSelf(ModBlocks.VOLCANIC_LANTERN.get());
         this.add(ModBlocks.METEORIC_IRON_ORE.get(),
-                block -> createOreDrop(ModBlocks.METEORIC_IRON_ORE.get(), ModItems.RAW_METEORIC_IRON.get()));
-
-
+                block -> this.createOreDrop(block, ModItems.RAW_METEORIC_IRON.get()));
+        this.dropSelf(ModBlocks.ENDEROAK_LOG.get());
+        this.dropSelf(ModBlocks.STRIPPED_ENDEROAK_LOG.get());
+        this.add(ModBlocks.ENDEROAK_LEAVES.get(),
+                block -> this.createLeavesDrops(block, Blocks.ACACIA_SAPLING, BlockLootSubProvider.NORMAL_LEAVES_SAPLING_CHANCES));
     }
 
     @Override

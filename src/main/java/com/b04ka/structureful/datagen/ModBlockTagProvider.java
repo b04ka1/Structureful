@@ -25,6 +25,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.VOLCANO.get())
                 .add(ModBlocks.VOLCANIC_LANTERN.get());
 
+        this.tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModBlocks.ENDEROAK_LOG.get())
+                .add(ModBlocks.STRIPPED_ENDEROAK_LOG.get());
+
+        this.tag(BlockTags.MINEABLE_WITH_HOE)
+                .add(ModBlocks.ENDEROAK_LEAVES.get());
 
         this.tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.METEORIC_IRON_BLOCK.get())
@@ -32,9 +38,16 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.VOLCANO.get())
                 .add(ModBlocks.VOLCANIC_LANTERN.get());
 
-
         this.tag(BlockTags.NEEDS_STONE_TOOL)
-                .add(ModBlocks.METEORIC_IRON_ORE.get());
+                .add(ModBlocks.METEORIC_IRON_ORE.get())
+                .add(ModBlocks.ENDEROAK_LOG.get())
+                .add(ModBlocks.STRIPPED_ENDEROAK_LOG.get());
 
+        this.tag(BlockTags.LOGS)
+                .add(ModBlocks.ENDEROAK_LOG.get())
+                .add(ModBlocks.STRIPPED_ENDEROAK_LOG.get());
+
+        this.tag(BlockTags.LEAVES)
+                .add(ModBlocks.ENDEROAK_LEAVES.get());
     }
 }

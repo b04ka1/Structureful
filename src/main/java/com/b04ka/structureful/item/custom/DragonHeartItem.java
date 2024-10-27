@@ -1,11 +1,10 @@
 package com.b04ka.structureful.item.custom;
 
+import com.b04ka.structureful.item.ModItems;
 import com.b04ka.structureful.misc.ModDataComponentTypes;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
@@ -28,14 +27,16 @@ public class DragonHeartItem extends Item {
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         if (getSapAmountValue(pStack) > 0 && pEntity instanceof Player player) {
-            player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 40, 1, false, true, true));
+            if (getSapAmountValue(pStack) % 20 == 0 && player.getHealth() < player.getMaxHealth()) {
+                player.heal(1F);
+            }
             pStack.set(SAP_AMOUNT, getSapAmountValue(pStack) - 1);
         }
     }
 
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack pStack, ItemStack pOther, Slot pSlot, ClickAction pAction, Player pPlayer, SlotAccess pAccess) {
-        if (pAction == ClickAction.SECONDARY && !pOther.isEmpty() && pOther.getItem() == Items.HONEY_BOTTLE && getSapAmountValue(pStack) < MAX_AMOUNT - TICKS_PER_BOTTLE) {
+        if (pAction == ClickAction.SECONDARY && !pOther.isEmpty() && pOther.getItem() == ModItems.ENDERSAP_BOTTLE.get() && getSapAmountValue(pStack) < MAX_AMOUNT - TICKS_PER_BOTTLE) {
             ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
             if (!pPlayer.addItem(bottle)) {
                 pPlayer.drop(bottle, false);
@@ -60,7 +61,7 @@ public class DragonHeartItem extends Item {
 
     @Override
     public int getBarColor(ItemStack pStack) {
-        return Mth.color(0.43F, 0.23F, 0.46F);
+        return Mth.color(153/255F, 50/255F, 179/255F);
     }
 
     @Override

@@ -14,8 +14,8 @@ public class ModTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Structureful.MODID);
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> STRUCTUREFUL_TAB= CREATIVE_MODE_TABS.register("structureful_tab",
-            ()-> CreativeModeTab.builder().icon(()-> new  ItemStack(ModItems.METEORIC_IRON_INGOT.get()))
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> STRUCTUREFUL_TAB = CREATIVE_MODE_TABS.register("structureful_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.METEORIC_IRON_INGOT.get()))
                     .title(Component.translatable("creative_tab.structureful.structureful"))
                     .displayItems(((displayParameters, output) -> {
                         output.accept(ModItems.RAW_METEORIC_IRON.get());
@@ -29,6 +29,10 @@ public class ModTabs {
                         output.accept(ModItems.BLAZE_STAFF.get());
                         output.accept(ModBlocks.VOLCANO.get());
                         output.accept(ModBlocks.VOLCANIC_LANTERN.get());
+                        output.accept(ModBlocks.ENDEROAK_LEAVES.get());
+                        output.accept(ModBlocks.ENDEROAK_LOG.get());
+                        output.accept(ModBlocks.STRIPPED_ENDEROAK_LOG.get());
+                        output.accept(ModItems.ENDERSAP_BOTTLE.get());
                         output.accept(ModItems.DRAGON_HEART.get());
                     }))
                     .build());

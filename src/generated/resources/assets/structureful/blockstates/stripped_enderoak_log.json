@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "structureful:block/stripped_enderoak_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "structureful:block/stripped_enderoak_log"
+    },
+    "axis=z": {
+      "model": "structureful:block/stripped_enderoak_log_horizontal",
+      "x": 90
+    }
+  }
+}

@@ -63,26 +63,25 @@ public class VolcanoBlock extends BaseEntityBlock {
     }
 
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource randomSource) {
-        if(state.getValue(ACTIVE)){
-            double d0 = (double)pos.getX() + randomSource.nextDouble();
-            double d1 = (double)pos.getY() + 1.0D;
-            double d2 = (double)pos.getZ() + randomSource.nextDouble();
+        if (state.getValue(ACTIVE)) {
+            double d0 = (double) pos.getX() + randomSource.nextDouble();
+            double d1 = (double) pos.getY() + 1.0D;
+            double d2 = (double) pos.getZ() + randomSource.nextDouble();
             level.addParticle(ParticleTypes.LAVA, d0, d1, d2, 0.0D, 0.0D, 0.0D);
             level.playLocalSound(d0, d1, d2, SoundEvents.LAVA_POP, SoundSource.BLOCKS, 0.2F + randomSource.nextFloat() * 0.2F, 0.9F + randomSource.nextFloat() * 0.15F, false);
         }
-        }
+    }
 
-//
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        if(pState.getValue(VolcanoBlock.ACTIVE)){
+        if (pState.getValue(VolcanoBlock.ACTIVE)) {
             if (pEntity instanceof LivingEntity) {
                 pEntity.hurt(pLevel.damageSources().hotFloor(), 3.0F);
-         }
+            }
         }
 
         super.stepOn(pLevel, pPos, pState, pEntity);
     }
-//
+
     public void playerDestroy(Level level, Player player, BlockPos blockPos, BlockState state, @Nullable BlockEntity entity, ItemStack itemStack) {
         super.playerDestroy(level, player, blockPos, state, entity, itemStack);
         boolean hasSilkTouch = itemStack.getTagEnchantments().entrySet()
@@ -92,21 +91,21 @@ public class VolcanoBlock extends BaseEntityBlock {
             level.setBlockAndUpdate(blockPos, Blocks.LAVA.defaultBlockState());
         }
     }
-//
-//
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        if(pLevel.isClientSide()) {
+        if (pLevel.isClientSide()) {
             return null;
         }
 
         return createTickerHelper(pBlockEntityType, ModBlockEntities.VOLCANO_BE.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
+
     @Override
     public void appendHoverText(ItemStack pStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
-        if(Screen.hasShiftDown()) {
+        if (Screen.hasShiftDown()) {
             pTooltipComponents.add(Component.translatable("tooltips.structureful.more_information_pressed"));
             pTooltipComponents.add(Component.translatable("tooltips.structureful.volcanic_netherrack"));
         } else {

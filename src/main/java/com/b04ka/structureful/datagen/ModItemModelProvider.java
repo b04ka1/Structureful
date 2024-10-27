@@ -19,5 +19,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.VOLCANIC_SHARD.get());
         basicItem(ModItems.VOLCANIC_CORE.get());
         basicItem(ModBlocks.VOLCANIC_LANTERN.get().asItem());
+        basicItem(ModItems.ENDERSAP_BOTTLE.get());
     }
 }

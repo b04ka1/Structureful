@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "bottom": "structureful:block/enderoak_log_top",
+    "front": "structureful:block/enderoak_log_with_sap",
+    "side":  "structureful:block/enderoak_log",
+    "top":   "structureful:block/enderoak_log_top"
+  }
+}
