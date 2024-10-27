@@ -3,8 +3,10 @@ package com.b04ka.structureful.block.custom;
 import com.b04ka.structureful.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -18,7 +20,6 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
@@ -41,18 +42,27 @@ public class EnderoakLogBlock extends Block {
     @Override
     protected ItemInteractionResult useItemOn
             (ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHitResult) {
-        if (!pStack.is(Items.GLASS_BOTTLE)) {
-            return super.useItemOn(pStack, pState, pLevel, pPos, pPlayer, pHand, pHitResult);
-        } else {
-            pStack.shrink(1);
+        if (pStack.is(Items.GLASS_BOTTLE) && pState.getValue(HAS_SAP).equals(2) && pHitResult.getDirection().equals(pState.getValue(FACING))) {
+            pLevel.setBlock(pPos, pState.setValue(HAS_SAP, 1), 11);
+            if (!pPlayer.isCreative()) {
+                pStack.shrink(1);
+            }
             pLevel.playSound(pPlayer, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
             if (pStack.isEmpty()) {
                 pPlayer.setItemInHand(pHand, new ItemStack(ModItems.ENDERSAP_BOTTLE.get()));
             } else if (!pPlayer.getInventory().add(new ItemStack(ModItems.ENDERSAP_BOTTLE.get()))) {
                 pPlayer.drop(new ItemStack(ModItems.ENDERSAP_BOTTLE.get()), false);
             }
-            pState.setValue(HAS_SAP, 1);
             return ItemInteractionResult.sidedSuccess(pLevel.isClientSide);
+        } else {
+            return super.useItemOn(pStack, pState, pLevel, pPos, pPlayer, pHand, pHitResult);
+        }
+    }
+
+    @Override
+    protected void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (pState.getValue(HAS_SAP).equals(1) && pRandom.nextInt(3) == 0) {
+            pLevel.setBlock(pPos, pState.setValue(HAS_SAP, 2), 11);
         }
     }
 

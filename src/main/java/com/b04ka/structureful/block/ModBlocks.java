@@ -7,16 +7,20 @@ import com.b04ka.structureful.block.custom.VolcanicLanternBlock;
 import com.b04ka.structureful.block.custom.VolcanoBlock;
 import com.b04ka.structureful.item.ModItems;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.common.ItemAbilities;
@@ -26,11 +30,14 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ModBlocks {
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Structureful.MODID);
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ENDEROAK = FeatureUtils.createKey("enderoak");
 
 
     public static final DeferredBlock<Block> METEORIC_IRON_BLOCK = registerBlock("meteoric_iron_block",
@@ -67,10 +74,23 @@ public class ModBlocks {
             ModBlocks::enderoakLog);
 
     public static final DeferredBlock<Block> ENDEROAK_LOG = registerBlock("enderoak_log",
-            ()-> new EnderoakLogBlock(BlockBehaviour.Properties.ofFullCopy(STRIPPED_ENDEROAK_LOG.get())));
+            ()-> new EnderoakLogBlock(BlockBehaviour.Properties.ofFullCopy(STRIPPED_ENDEROAK_LOG.get()).randomTicks()));
 
     public static final DeferredBlock<LeavesBlock> ENDEROAK_LEAVES = registerBlock("enderoak_leaves",
             ModBlocks::enderOakLeaves);
+
+    public static final DeferredBlock<Block> ENDEROAK_SAPLING = registerBlock("enderoak_sapling", ()-> new SaplingBlock(
+            new TreeGrower("enderoak",
+                    Optional.empty(),
+                    Optional.of(ENDEROAK),
+                    Optional.empty()),
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .pushReaction(PushReaction.DESTROY)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

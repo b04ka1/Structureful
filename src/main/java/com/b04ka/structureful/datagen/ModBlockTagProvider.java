@@ -49,5 +49,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.LEAVES)
                 .add(ModBlocks.ENDEROAK_LEAVES.get());
+
+        this.tag(BlockTags.SAPLINGS)
+                .add(ModBlocks.ENDEROAK_SAPLING.get());
     }
 }

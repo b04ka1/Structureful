@@ -27,12 +27,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.STRIPPED_ENDEROAK_LOG.get());
         this.add(ModBlocks.ENDEROAK_LEAVES.get(),
                 block -> this.createLeavesDrops(block, Blocks.ACACIA_SAPLING, BlockLootSubProvider.NORMAL_LEAVES_SAPLING_CHANCES));
+        this.dropSelf(ModBlocks.ENDEROAK_SAPLING.get());
     }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return ModBlocks.BLOCKS.getEntries().stream()
-                .filter( b-> b != ModBlocks.VOLCANO)
+                .filter(b -> b != ModBlocks.VOLCANO)
                 .map(Holder::value)::iterator;
     }
 }

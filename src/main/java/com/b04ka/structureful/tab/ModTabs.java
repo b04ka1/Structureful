@@ -29,6 +29,7 @@ public class ModTabs {
                         output.accept(ModItems.BLAZE_STAFF.get());
                         output.accept(ModBlocks.VOLCANO.get());
                         output.accept(ModBlocks.VOLCANIC_LANTERN.get());
+                        output.accept(ModBlocks.ENDEROAK_SAPLING.get());
                         output.accept(ModBlocks.ENDEROAK_LEAVES.get());
                         output.accept(ModBlocks.ENDEROAK_LOG.get());
                         output.accept(ModBlocks.STRIPPED_ENDEROAK_LOG.get());

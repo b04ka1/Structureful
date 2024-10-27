@@ -38,14 +38,15 @@ public class DragonHeartItem extends Item {
     public boolean overrideOtherStackedOnMe(ItemStack pStack, ItemStack pOther, Slot pSlot, ClickAction pAction, Player pPlayer, SlotAccess pAccess) {
         if (pAction == ClickAction.SECONDARY && !pOther.isEmpty() && pOther.getItem() == ModItems.ENDERSAP_BOTTLE.get() && getSapAmountValue(pStack) < MAX_AMOUNT - TICKS_PER_BOTTLE) {
             ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE);
-            if (!pPlayer.addItem(bottle)) {
+            if (!pPlayer.isCreative() && !pPlayer.addItem(bottle)) {
                 pPlayer.drop(bottle, false);
             }
             pStack.set(SAP_AMOUNT, getSapAmountValue(pStack) + TICKS_PER_BOTTLE);
             this.playDrinkSound(pPlayer);
-            pOther.shrink(1);
+            if (!pPlayer.isCreative()) {
+                pOther.shrink(1);
+            }
             return true;
-
         }
         return false;
     }
