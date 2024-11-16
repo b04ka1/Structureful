@@ -26,12 +26,12 @@ public class BlazeStaffItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         player.getCooldowns().addCooldown(this, 20);
-        Random random = new Random();
         class SimpleThread extends Thread{
             @Override
             public void run() {
                 if (!level.isClientSide){
                     for (int i = 0; i < 3; i++) {
+                        Random random = new Random();
                         SmallFireball smallfireball = new SmallFireball(level, player, new Vec3(0F, 0F, 0F));
                         smallfireball.setPos(smallfireball.getX(), player.getY(0.5) + 0.5, smallfireball.getZ());
                         smallfireball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2F, 2F);

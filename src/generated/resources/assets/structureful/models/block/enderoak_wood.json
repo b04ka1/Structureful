@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "structureful:block/enderoak_log",
+    "side": "structureful:block/enderoak_log"
+  }
+}

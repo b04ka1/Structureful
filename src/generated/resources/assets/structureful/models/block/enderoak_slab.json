@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "structureful:block/enderoak_planks",
+    "side": "structureful:block/enderoak_planks",
+    "top": "structureful:block/enderoak_planks"
+  }
+}

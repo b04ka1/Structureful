@@ -29,7 +29,10 @@ public class VolcanoPiece extends TemplateStructurePiece {
     }
 
     private static StructurePlaceSettings makeSettings() {
-        return new StructurePlaceSettings().setMirror(Mirror.NONE).addProcessor(BlockIgnoreProcessor.STRUCTURE_AND_AIR).setIgnoreEntities(true);
+        return new StructurePlaceSettings()
+                .setMirror(Mirror.NONE)
+                .addProcessor(BlockIgnoreProcessor.STRUCTURE_AND_AIR)
+                .setIgnoreEntities(true);
     }
 
 

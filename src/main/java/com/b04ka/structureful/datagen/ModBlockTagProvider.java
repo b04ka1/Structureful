@@ -27,7 +27,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.ENDEROAK_LOG.get())
-                .add(ModBlocks.STRIPPED_ENDEROAK_LOG.get());
+                .add(ModBlocks.STRIPPED_ENDEROAK_LOG.get())
+                .add(ModBlocks.ENDEROAK_WOOD.get())
+                .add(ModBlocks.STRIPPED_ENDEROAK_WOOD.get())
+                .add(ModBlocks.ENDEROAK_PLANKS.get())
+                .add(ModBlocks.ENDEROAK_STAIRS.get())
+                .add(ModBlocks.ENDEROAK_SLAB.get())
+                .add(ModBlocks.ENDEROAK_FENCE.get())
+                .add(ModBlocks.ENDEROAK_FENCE_GATE.get());
 
         this.tag(BlockTags.MINEABLE_WITH_HOE)
                 .add(ModBlocks.ENDEROAK_LEAVES.get());
@@ -41,7 +48,14 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.METEORIC_IRON_ORE.get())
                 .add(ModBlocks.ENDEROAK_LOG.get())
-                .add(ModBlocks.STRIPPED_ENDEROAK_LOG.get());
+                .add(ModBlocks.STRIPPED_ENDEROAK_LOG.get())
+                .add(ModBlocks.ENDEROAK_WOOD.get())
+                .add(ModBlocks.STRIPPED_ENDEROAK_WOOD.get())
+                .add(ModBlocks.ENDEROAK_PLANKS.get())
+                .add(ModBlocks.ENDEROAK_STAIRS.get())
+                .add(ModBlocks.ENDEROAK_SLAB.get())
+                .add(ModBlocks.ENDEROAK_FENCE.get())
+                .add(ModBlocks.ENDEROAK_FENCE_GATE.get());
 
         this.tag(BlockTags.LOGS)
                 .add(ModBlocks.ENDEROAK_LOG.get())
@@ -52,5 +66,20 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         this.tag(BlockTags.SAPLINGS)
                 .add(ModBlocks.ENDEROAK_SAPLING.get());
+
+        this.tag(BlockTags.PLANKS)
+                .add(ModBlocks.ENDEROAK_PLANKS.get());
+
+        this.tag(BlockTags.WOODEN_STAIRS)
+                .add(ModBlocks.ENDEROAK_STAIRS.get());
+
+        this.tag(BlockTags.WOODEN_SLABS)
+                .add(ModBlocks.ENDEROAK_SLAB.get());
+
+        this.tag(BlockTags.FENCES)
+                .add(ModBlocks.ENDEROAK_FENCE.get());
+
+        this.tag(BlockTags.FENCE_GATES)
+                .add(ModBlocks.ENDEROAK_FENCE_GATE.get());
     }
 }

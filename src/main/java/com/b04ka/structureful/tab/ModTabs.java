@@ -29,12 +29,20 @@ public class ModTabs {
                         output.accept(ModItems.BLAZE_STAFF.get());
                         output.accept(ModBlocks.VOLCANO.get());
                         output.accept(ModBlocks.VOLCANIC_LANTERN.get());
+                        output.accept(ModItems.ENDERSAP_BOTTLE.get());
+                        output.accept(ModItems.DRAGON_HEART.get());
+                        output.accept(ModItems.ENDERAPPLE.get());
                         output.accept(ModBlocks.ENDEROAK_SAPLING.get());
                         output.accept(ModBlocks.ENDEROAK_LEAVES.get());
                         output.accept(ModBlocks.ENDEROAK_LOG.get());
                         output.accept(ModBlocks.STRIPPED_ENDEROAK_LOG.get());
-                        output.accept(ModItems.ENDERSAP_BOTTLE.get());
-                        output.accept(ModItems.DRAGON_HEART.get());
+                        output.accept(ModBlocks.ENDEROAK_WOOD.get());
+                        output.accept(ModBlocks.STRIPPED_ENDEROAK_WOOD.get());
+                        output.accept(ModBlocks.ENDEROAK_PLANKS.get());
+                        output.accept(ModBlocks.ENDEROAK_STAIRS.get());
+                        output.accept(ModBlocks.ENDEROAK_SLAB.get());
+                        output.accept(ModBlocks.ENDEROAK_FENCE.get());
+                        output.accept(ModBlocks.ENDEROAK_FENCE_GATE.get());
                     }))
                     .build());
 }

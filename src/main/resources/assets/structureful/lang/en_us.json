@@ -7,6 +7,7 @@
   "item.structureful.blaze_staff": "Blaze Staff",
   "item.structureful.dragon_heart": "Dragon Heart",
   "item.structureful.endersap_bottle": "Endersap Bottle",
+  "item.structureful.enderapple": "Enderapple",
 
   "block.structureful.meteoric_iron_block": "Meteoric Iron Block",
   "block.structureful.meteoric_iron_ore": "Meteoric Iron Ore",
@@ -14,8 +15,14 @@
   "block.structureful.volcanic_netherrack": "Volcanic Netherrack",
   "block.structureful.volcanic_lantern": "Volcanic Lantern",
   "block.structureful.enderoak_log": "Enderoak Log",
-  "block.structureful.enderoak_log_with_sap": "Enderoak Log With Sap",
+  "block.structureful.enderoak_wood": "Enderoak Wood",
+  "block.structureful.stripped_enderoak_wood": "Stripped Enderoak Wood",
+  "block.structureful.enderoak_planks": "Enderoak Planks",
+  "block.structureful.enderoak_stairs": "Enderoak Stairs",
+  "block.structureful.enderoak_slab": "Enderoak Slab",
   "block.structureful.stripped_enderoak_log": "Stripped Enderoak Log",
+  "block.structureful.enderoak_fence": "Enderoak Fence",
+  "block.structureful.enderoak_fence_gate": "Enderoak Fence Gate",
   "block.structureful.enderoak_leaves": "Enderoak Leaves",
   "block.structureful.enderoak_sapling": "Enderoak Sapling",
 

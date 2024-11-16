@@ -16,5 +16,5 @@ public class ModRecipes {
 
 
     public static final Supplier<RecipeType<AdvancedFurnaceRecipe>> ADVANCED_FURNACE_TYPE = RECIPE_TYPES.register("advanced_smelting", ()-> new RecipeType<>(){});
-    public static final Supplier<RecipeSerializer<?>> ADVANCED_FURNACE = RECIPE_SERIALIZER.register("advanced_smelting", ()-> new SimpleCookingSerializer<>(AdvancedFurnaceRecipe::new, 100));
+    public static final Supplier<RecipeSerializer<AdvancedFurnaceRecipe>> ADVANCED_FURNACE = RECIPE_SERIALIZER.register("advanced_smelting", ()-> new SimpleCookingSerializer<>(AdvancedFurnaceRecipe::new, 100));
 }

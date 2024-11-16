@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "structureful:block/enderoak_slab"
+    },
+    "type=double": {
+      "model": "structureful:block/enderoak_planks"
+    },
+    "type=top": {
+      "model": "structureful:block/enderoak_slab_top"
+    }
+  }
+}

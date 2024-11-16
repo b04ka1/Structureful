@@ -2,6 +2,13 @@
   "values": [
     "structureful:meteoric_iron_ore",
     "structureful:enderoak_log",
-    "structureful:stripped_enderoak_log"
+    "structureful:stripped_enderoak_log",
+    "structureful:enderoak_wood",
+    "structureful:stripped_enderoak_wood",
+    "structureful:enderoak_planks",
+    "structureful:enderoak_stairs",
+    "structureful:enderoak_slab",
+    "structureful:enderoak_fence",
+    "structureful:enderoak_fence_gate"
   ]
 }

@@ -3,10 +3,14 @@ package com.b04ka.structureful.datagen;
 
 import com.b04ka.structureful.block.ModBlocks;
 import com.b04ka.structureful.item.ModItems;
+import com.b04ka.structureful.recipe.AdvancedFurnaceRecipe;
+import com.b04ka.structureful.recipe.ModRecipes;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
@@ -93,5 +97,41 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         oreBlasting(pRecipeOutput, METEORIC_IRON_SMELTABLES, RecipeCategory.MISC, ModItems.METEORIC_IRON_INGOT, 10f, 100, "meteoric_iron");
 
+        woodFromLogs(pRecipeOutput, ModBlocks.ENDEROAK_WOOD, ModBlocks.ENDEROAK_LOG);
+
+        woodFromLogs(pRecipeOutput, ModBlocks.STRIPPED_ENDEROAK_WOOD, ModBlocks.STRIPPED_ENDEROAK_LOG);
+
+        planksFromLog(pRecipeOutput, ModBlocks.ENDEROAK_PLANKS, ModItems.ENDEROAK_LOGS_TAG, 4);
+
+        stairBuilder(ModBlocks.ENDEROAK_STAIRS, Ingredient.of(ModBlocks.ENDEROAK_PLANKS))
+                .unlockedBy("has_enderoak_planks", has(ModBlocks.ENDEROAK_PLANKS))
+                .save(pRecipeOutput);
+
+        slabBuilder(RecipeCategory.BUILDING_BLOCKS, ModBlocks.ENDEROAK_SLAB, Ingredient.of(ModBlocks.ENDEROAK_PLANKS))
+                .unlockedBy("has_enderoak_planks", has(ModBlocks.ENDEROAK_PLANKS))
+                .save(pRecipeOutput);
+
+        fenceBuilder(ModBlocks.ENDEROAK_FENCE, Ingredient.of(ModBlocks.ENDEROAK_PLANKS))
+                .unlockedBy("has_enderoak_planks", has(ModBlocks.ENDEROAK_PLANKS))
+                .save(pRecipeOutput);
+
+        fenceGateBuilder(ModBlocks.ENDEROAK_FENCE_GATE, Ingredient.of(ModBlocks.ENDEROAK_PLANKS))
+                .unlockedBy("has_enderoak_planks", has(ModBlocks.ENDEROAK_PLANKS))
+                .save(pRecipeOutput);
+    }
+
+    private static void advancedSmelting(RecipeOutput pRecipeOutput, List<ItemLike> pIngredients, ItemLike pResult, float pExperience, int pCookingTime) {
+        oreCooking(
+                pRecipeOutput,
+                ModRecipes.ADVANCED_FURNACE.get(),
+                AdvancedFurnaceRecipe::new,
+                pIngredients,
+                RecipeCategory.MISC,
+                pResult,
+                pExperience,
+                pCookingTime,
+                BuiltInRegistries.ITEM.getKey(pResult.asItem()).getPath(),
+                "_from_advanced_smelting"
+        );
     }
 }

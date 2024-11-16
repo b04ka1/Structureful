@@ -4,12 +4,16 @@ import com.b04ka.structureful.Structureful;
 import com.b04ka.structureful.item.custom.BlazeStaffItem;
 import com.b04ka.structureful.item.custom.DragonHeartItem;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -24,6 +28,8 @@ public class ModItems {
 
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Structureful.MODID);
+
+    public static final TagKey<Item> ENDEROAK_LOGS_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Structureful.MODID, "enderoak_logs"));
 
     public static final DeferredItem<Item> METEORIC_IRON_INGOT = ITEMS.registerSimpleItem("meteoric_iron_ingot", new Item.Properties());
     public static final DeferredItem<Item> RAW_METEORIC_IRON = ITEMS.registerSimpleItem("raw_meteoric_iron", new Item.Properties());
@@ -63,6 +69,7 @@ public class ModItems {
     public static final DeferredItem<Item> BLAZE_STAFF = ITEMS.register("blaze_staff", () -> new BlazeStaffItem(new Item.Properties().fireResistant().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<Item> DRAGON_HEART = ITEMS.register("dragon_heart", () -> new DragonHeartItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
     public static final DeferredItem<Item> ENDERSAP_BOTTLE = ITEMS.registerSimpleItem("endersap_bottle", new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON));
+    public static final DeferredItem<Item> ENDERAPPLE = ITEMS.registerSimpleItem("enderapple", new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.3F).effect(new MobEffectInstance(MobEffects.REGENERATION, 200, 0), 1F).build()));
 
 }
 

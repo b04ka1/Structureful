@@ -1,5 +1,6 @@
 package com.b04ka.structureful.block.custom;
 
+import com.b04ka.structureful.block.ModBlocks;
 import com.b04ka.structureful.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,16 +14,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DirectionalBlock;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
+import org.jetbrains.annotations.Nullable;
 
 public class EnderoakLogBlock extends Block {
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
@@ -61,6 +63,7 @@ public class EnderoakLogBlock extends Block {
 
     @Override
     protected void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (!pLevel.isAreaLoaded(pPos, 1)) return;
         if (pState.getValue(HAS_SAP).equals(1) && pRandom.nextInt(3) == 0) {
             pLevel.setBlock(pPos, pState.setValue(HAS_SAP, 2), 11);
         }
@@ -79,5 +82,22 @@ public class EnderoakLogBlock extends Block {
     @Override
     protected BlockState mirror(BlockState pState, Mirror pMirror) {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
+
+    @Override
+    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
+        ItemStack itemStack = context.getItemInHand();
+        if (!itemStack.canPerformAction(itemAbility))
+            return null;
+        if (ItemAbilities.AXE_STRIP == itemAbility) {
+            if (this == ModBlocks.ENDEROAK_LOG.get()) {
+                if (state.getValue(HAS_SAP) == 0) {
+                    return ModBlocks.STRIPPED_ENDEROAK_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, state.getValue(FACING).getAxis());
+                } else {
+                    return ModBlocks.STRIPPED_ENDEROAK_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, Direction.Axis.Y);
+                }
+            }
+        }
+        return super.getToolModifiedState(state, context, itemAbility, simulate);
     }
 }
